@@ -10,16 +10,17 @@ public class WeatherProvider {
 
     private WeatherProvider() {
         weather = new String[]{ "RAIN", "FOG", "SUN", "SNOW" };
-        weatherProvider = new WeatherProvider();
     }
 
     public static WeatherProvider getProvider() {
+        if (weatherProvider == null)
+            weatherProvider = new WeatherProvider();
         return weatherProvider;
     }
 
     public String getCurrentWeather(Coordinates coordinates) {
         int random = new Random().nextInt((coordinates.getLatitude() * coordinates.getLongitude())
-                / coordinates.getHeight());
+                * coordinates.getHeight());
 
         return (weather[random % weather.length]);
     }

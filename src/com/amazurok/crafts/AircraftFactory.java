@@ -1,9 +1,10 @@
 package com.amazurok.crafts;
 
+import com.amazurok.exceptions.IllegalInputException;
 import com.amazurok.interfce.Flyable;
 
 public class AircraftFactory {
-    public Flyable newAircraft(String type, String name, int longitude, int latitude, int height) {
+    public static Flyable newAircraft(String type, String name, int longitude, int latitude, int height) throws IllegalInputException {
         switch (type) {
             case "Helicopter":
                 return new Helicopter(name, new Coordinates(longitude, latitude, height));
@@ -12,7 +13,7 @@ public class AircraftFactory {
             case "JetPlane":
                 return new JetPlane(name, new Coordinates(longitude, latitude, height));
             default:
-                return null;
+                throw new IllegalInputException(String.format("Type '%s' is not valid", type));
         }
     }
 }

@@ -13,19 +13,23 @@ public class Tower {
     private File file = new File("simulation.txt");
 
     private List<Flyable> observers = new ArrayList<>();
+    private List<Flyable> unregistered = new ArrayList<>();
 
     public void register(Flyable flyable) {
         observers.add(flyable);
     }
 
     public void unregister(Flyable flyable) {
-        observers.remove(flyable);
+        if (!unregistered.contains(flyable)) {
+            unregistered.add(flyable);
+        }
     }
 
     protected void conditionChanged() {
         for (Flyable flyable: observers) {
             flyable.updateConditions();
         }
+        observers.removeAll(unregistered);
     }
 
     public void writeToFile(String text) {
