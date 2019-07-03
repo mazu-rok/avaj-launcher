@@ -35,7 +35,7 @@ public class Simulator {
             BufferedReader buf = new BufferedReader(new InputStreamReader(file));
 
             String timesOfSimulationString = buf.readLine();
-            if (timesOfSimulationString == null || timesOfSimulationString.isEmpty()) {
+            if (timesOfSimulationString == null) {
                 throw new ReadFileException("File is empty");
             }
             int timesOfSimulation;
@@ -86,7 +86,7 @@ public class Simulator {
             }
             buf.close();
             for (int i = 0; i < timesOfSimulation; i++) {
-                weatherTower.writeToFile(String.format("Simulation number %d\n", i + 1));
+                weatherTower.writeToFile(String.format("->Simulation number %d\n", i + 1));
                 weatherTower.changeWeather();
             }
         } catch (ReadFileException | IllegalInputException | ArgumentsException e) {

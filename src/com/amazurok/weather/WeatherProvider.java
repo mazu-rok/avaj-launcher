@@ -2,8 +2,6 @@ package com.amazurok.weather;
 
 import com.amazurok.crafts.Coordinates;
 
-import java.util.Random;
-
 public class WeatherProvider {
     private static WeatherProvider weatherProvider;
     private static String[] weather;
@@ -19,8 +17,7 @@ public class WeatherProvider {
     }
 
     public String getCurrentWeather(Coordinates coordinates) {
-        int random = new Random().nextInt((coordinates.getLatitude() * coordinates.getLongitude())
-                * coordinates.getHeight());
+        int random = coordinates.getLatitude() + coordinates.getLongitude() + coordinates.getHeight();
 
         return (weather[random % weather.length]);
     }

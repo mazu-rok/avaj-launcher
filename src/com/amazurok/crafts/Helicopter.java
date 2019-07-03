@@ -15,7 +15,7 @@ public class Helicopter extends Aircraft implements Flyable {
         String weather = weatherTower.getWeather(coordinates);
         switch (weather) {
             case "SUN":
-                coordinates = new Coordinates(coordinates.getLongitude() + 2, coordinates.getLatitude(), coordinates.getHeight() + 2);
+                coordinates = new Coordinates(coordinates.getLongitude() + 10, coordinates.getLatitude(), coordinates.getHeight() + 2);
                 weatherTower.writeToFile(String.format("%s#%s(%d): This is hot.\n", this.getClass().getSimpleName(), this.name, this.id));
                 break;
             case "RAIN":
